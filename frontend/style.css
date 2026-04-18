@@ -1,0 +1,48 @@
+body {
+    margin: 0;
+    padding: 0;
+    overflow: hidden; /* Evita scrolls innecesarios */
+    background-color: #0b0d0f; /* Fondo oscuro por si el mapa tarda en cargar */
+}
+
+#map {
+    height: 100vh;
+    width: 100vw;
+    z-index: 1; /* El mapa queda al fondo */
+}
+
+.ui-overlay {
+    position: absolute;
+    top: 20px;
+    left: 20px;
+    z-index: 1000; /* Siempre por encima del mapa (Leaflet usa hasta 400-600) */
+    
+    background: rgba(10, 15, 20, 0.85); /* Fondo más sólido y oscuro */
+    color: #00ff00;
+    font-family: 'Courier New', Courier, monospace;
+    padding: 20px;
+    border: 1px solid #00ff00;
+    border-radius: 4px;
+    box-shadow: 0 0 15px rgba(0, 255, 0, 0.3);
+    pointer-events: none; /* Permite clickear el mapa a través del panel */
+    min-width: 250px;
+}
+
+.ui-overlay h1 {
+    margin: 0 0 10px 0;
+    font-size: 1.2rem;
+    letter-spacing: 2px;
+    border-bottom: 1px solid #00ff00;
+    padding-bottom: 5px;
+}
+
+#stats {
+    font-weight: bold;
+    font-size: 1rem;
+}
+
+/* Efecto de parpadeo para el contador (opcional) */
+#count {
+    color: #fff;
+    text-shadow: 0 0 5px #fff;
+}

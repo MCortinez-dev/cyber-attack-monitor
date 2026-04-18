@@ -1,0 +1,9 @@
+# Ignorar dependencias de Node
+node_modules/
+
+# Ignorar la base de datos local (muy importante!)
+backend/attacks.db
+
+# Ignorar archivos del sistema
+.DS_Store
+Thumbs.db
