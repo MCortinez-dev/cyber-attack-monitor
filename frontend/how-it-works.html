@@ -8,7 +8,8 @@
     <style>
         body {
             margin: 0;
-            background-color: #05070a; /* Fondo oscuro igual al mapa */
+            padding: 0;
+            background-color: #05070a;
             color: #00ff00;
             font-family: 'Courier New', monospace;
             display: flex;
@@ -16,74 +17,104 @@
             align-items: center;
             justify-content: center;
             min-height: 100vh;
+            overflow-x: hidden;
         }
 
-        .container {
-            position: relative; /* Base para posicionar botones sobre la imagen */
-            width: 95%;
+        h2 {
+            margin: 20px 0;
+            text-shadow: 0 0 10px #00ff00;
+            font-size: 1.5rem;
+            text-align: center;
+        }
+
+        .img-container {
+            width: 90%;
             max-width: 1400px;
+            margin-bottom: 50px;
         }
 
         .main-img {
             width: 100%;
+            height: auto;
             border: 1px solid #00ff00;
             border-radius: 8px;
-            box-shadow: 0 0 20px rgba(0, 255, 0, 0.2);
+            box-shadow: 0 0 30px rgba(0, 255, 0, 0.15);
         }
 
-        /* Estilo para los botones de acceso rápido */
-        .overlay-btn {
-            position: absolute;
-            background: rgba(0, 255, 0, 0.1);
-            border: 2px solid #00ff00;
-            color: #00ff00;
-            padding: 8px 15px;
+        /* Estilo común para los botones flotantes (Burbujas) */
+        .floating-bubble {
+            position: fixed;
+            width: 60px;
+            height: 60px;
+            background-color: #fff;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.5), 0 0 0 4px rgba(255,255,255,0.2);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            z-index: 1001;
+            cursor: pointer;
             text-decoration: none;
-            font-weight: bold;
-            font-size: 0.8rem;
-            border-radius: 4px;
-            transition: all 0.3s;
-            box-shadow: 0 0 10px rgba(0, 255, 0, 0.3);
         }
 
-        .overlay-btn:hover {
-            background: #00ff00;
-            color: #000;
-            box-shadow: 0 0 20px #00ff00;
+        .floating-bubble:hover {
+            transform: scale(1.1);
+            box-shadow: 0 6px 20px rgba(0,255,0,0.4), 0 0 0 6px rgba(255,255,255,0.3);
         }
 
-        /* Posicionamiento según tu pedido */
-        .btn-github {
-            bottom: 25%; /* Cerca del icono de GitHub */
-            left: 33%;
+        .floating-bubble img {
+            width: 35px;
+            height: 35px;
+            border-radius: 50%;
         }
 
+        /* Posicionamiento pedido: Superior Derecha (Home/Mapa) */
         .btn-home {
-            bottom: 55%; /* Arriba del cartel de Vercel */
-            right: 15%;
+            top: 20px;
+            right: 20px;
         }
 
-        h2 {
-            margin-bottom: 20px;
-            text-shadow: 0 0 10px #00ff00;
+        /* Posicionamiento pedido: Inferior Izquierda (GitHub) */
+        .btn-github {
+            bottom: 20px;
+            left: 20px;
         }
+
+        /* Etiqueta de texto para los botones */
+        .bubble-label {
+            position: absolute;
+            background: rgba(0,0,0,0.8);
+            color: #00ff00;
+            font-size: 10px;
+            padding: 2px 6px;
+            border: 1px solid #00ff00;
+            white-space: nowrap;
+            pointer-events: none;
+        }
+
+        .btn-home .bubble-label { bottom: -20px; }
+        .btn-github .bubble-label { top: -20px; }
+
     </style>
 </head>
 <body>
 
-    <h2>SYSTEM ARCHITECTURE</h2>
+    <h2>SYSTEM ARCHITECTURE FLOW</h2>
 
-    <div class="container">
+    <div class="img-container">
         <img src="img/how-it-works.png" alt="Architecture Diagram" class="main-img">
-
-        <a href="https://github.com/MCortinez-dev" target="_blank" class="overlay-btn btn-github">
-            VIEW REPO
-        </a>
-
-        <a href="index.html" class="overlay-btn btn-home">
-            BACK TO MAP
-        </a>
     </div>
+
+    <a href="index.html" class="floating-bubble btn-home">
+        <img src="img/favicon.ico" alt="Map">
+        <span class="bubble-label">LIVE MAP</span>
+    </a>
+
+    <a href="https://github.com/MCortinez-dev" target="_blank" class="floating-bubble btn-github">
+        <img src="img/git.png" alt="GitHub">
+        <span class="bubble-label">GITHUB REPO</span>
+    </a>
 
 </body>
 </html>
