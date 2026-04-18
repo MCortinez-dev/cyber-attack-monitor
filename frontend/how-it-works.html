@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Architecture | How it works</title>
+    <link rel="icon" type="image/x-icon" href="img/favicon.ico">
+    <style>
+        body {
+            margin: 0;
+            background-color: #05070a; /* Fondo oscuro igual al mapa */
+            color: #00ff00;
+            font-family: 'Courier New', monospace;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            min-height: 100vh;
+        }
+
+        .container {
+            position: relative; /* Base para posicionar botones sobre la imagen */
+            width: 95%;
+            max-width: 1400px;
+        }
+
+        .main-img {
+            width: 100%;
+            border: 1px solid #00ff00;
+            border-radius: 8px;
+            box-shadow: 0 0 20px rgba(0, 255, 0, 0.2);
+        }
+
+        /* Estilo para los botones de acceso rápido */
+        .overlay-btn {
+            position: absolute;
+            background: rgba(0, 255, 0, 0.1);
+            border: 2px solid #00ff00;
+            color: #00ff00;
+            padding: 8px 15px;
+            text-decoration: none;
+            font-weight: bold;
+            font-size: 0.8rem;
+            border-radius: 4px;
+            transition: all 0.3s;
+            box-shadow: 0 0 10px rgba(0, 255, 0, 0.3);
+        }
+
+        .overlay-btn:hover {
+            background: #00ff00;
+            color: #000;
+            box-shadow: 0 0 20px #00ff00;
+        }
+
+        /* Posicionamiento según tu pedido */
+        .btn-github {
+            bottom: 25%; /* Cerca del icono de GitHub */
+            left: 33%;
+        }
+
+        .btn-home {
+            bottom: 55%; /* Arriba del cartel de Vercel */
+            right: 15%;
+        }
+
+        h2 {
+            margin-bottom: 20px;
+            text-shadow: 0 0 10px #00ff00;
+        }
+    </style>
+</head>
+<body>
+
+    <h2>SYSTEM ARCHITECTURE</h2>
+
+    <div class="container">
+        <img src="img/how-it-works.png" alt="Architecture Diagram" class="main-img">
+
+        <a href="https://github.com/MCortinez-dev" target="_blank" class="overlay-btn btn-github">
+            VIEW REPO
+        </a>
+
+        <a href="index.html" class="overlay-btn btn-home">
+            BACK TO MAP
+        </a>
+    </div>
+
+</body>
+</html>
