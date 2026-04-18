@@ -1,18 +1,15 @@
-// Inicializar mapa desactivando el zoom por defecto
+// Inicializar mapa centrado y oscuro
 const map = L.map('map', {
     zoomControl: false 
-}).setView([20, 0], 2);
+}).setView([20, 10], 2);
 
-// Agregamos el control de zoom en la esquina inferior derecha
-L.control.zoom({
-    position: 'bottomright'
-}).addTo(map);
+L.control.zoom({ position: 'bottomright' }).addTo(map);
 
+// TileLayer estándar, pero el CSS le aplica el filtro oscuro
 L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
   attribution: '© OpenStreetMap'
 }).addTo(map);
 
-// Coordenadas exactas para los países en n8n
 const coords = {
   "China": [35, 103],
   "USA": [37, -95],
@@ -24,69 +21,80 @@ const coords = {
 
 const attackLayer = L.layerGroup().addTo(map);
 let lastId = 0;
-let totalAtaques = 0; // <--- Definido aquí arriba para que no falle
+let totalAtaques = 0;
 
 function drawAttack(a) {
   const sourceCoord = coords[a.source];
   const targetCoord = coords[a.target];
 
-  if (!sourceCoord || !targetCoord) {
-    console.warn(`País no reconocido. Source: ${a.source}, Target: ${a.target}`);
-    return;
-  }
+  if (!sourceCoord || !targetCoord) return;
 
-  // 1. Dibujar la línea (el rastro del ataque)
+  // 1. Dibujar la línea (Dura 30 segundos para que no se vea vacío)
   const line = L.polyline([sourceCoord, targetCoord], {
-    color: "red",
-    weight: 2,
-    opacity: 0.6,
-    dashArray: '5, 10'
+    color: "#ff0000",
+    weight: 1,
+    opacity: 0.5,
+    dashArray: '4, 8'
   }).addTo(attackLayer);
 
-  // 2. Dibujar el impacto
-  const marker = L.circleMarker(targetCoord, {
-    radius: 6,
-    color: "orange",
-    fillColor: "#ff0000",
-    fillOpacity: 0.9
-  }).addTo(attackLayer).bindPopup(`Ataque: ${a.type || 'Desconocido'}`);
+  // 2. Nombres en origen y destino (Tooltip permanente por 5 seg)
+  const sourceLabel = L.marker(sourceCoord, { opacity: 0 })
+    .bindTooltip(a.source, { permanent: true, direction: 'top', className: 'map-label' })
+    .addTo(attackLayer);
 
-  // 3. Limpieza automática del rastro
+  const targetLabel = L.marker(targetCoord, { opacity: 0 })
+    .bindTooltip(a.target, { permanent: true, direction: 'bottom', className: 'map-label' })
+    .addTo(attackLayer);
+
+  // 3. Marcador de impacto
+  const marker = L.circleMarker(targetCoord, {
+    radius: 4,
+    color: "#ff0000",
+    fillColor: "#ff0000",
+    fillOpacity: 0.8
+  }).addTo(attackLayer);
+
+  // 4. Limpieza: Nombres duran 5s, Líneas duran 30s
+  setTimeout(() => {
+    attackLayer.removeLayer(sourceLabel);
+    attackLayer.removeLayer(targetLabel);
+  }, 5000);
+
   setTimeout(() => {
     attackLayer.removeLayer(line);
     attackLayer.removeLayer(marker);
-  }, 10000);
+  }, 30000);
 
-  // --- ACTUALIZACIÓN DEL PANEL ---
-  
-  // 4. Actualizar el contador global
+  // --- ACTUALIZACIÓN DE UI ---
   totalAtaques++;
-  const countElement = document.getElementById('count');
-  if (countElement) {
-    countElement.innerText = totalAtaques;
-  }
+  document.getElementById('count').innerText = totalAtaques;
 
-  // 5. Actualizar ficha técnica del último ataque
-  const lastAttackElement = document.getElementById('last-attack');
-  if (lastAttackElement) {
-    lastAttackElement.innerHTML = `
-        <div style="color: #00ff00; margin-top: 5px; line-height: 1.4;">
-            <strong>AMENAZA:</strong> ${a.type || 'Desconocido'}<br>
-            <strong>ORIGEN:</strong> ${a.source}<br>
-            <strong>DESTINO:</strong> ${a.target}
-        </div>
-    `;
+  // Actualizar Ficha Superior
+  document.getElementById('last-attack').innerHTML = `
+    <div style="color: #ff3333; font-weight: bold;">${a.type || 'UNKNOWN'}</div>
+    <div style="font-size: 0.8em;">FROM: ${a.source} -> TO: ${a.target}</div>
+  `;
+
+  // Agregar al Historial (Log)
+  const log = document.getElementById('attack-log');
+  const entry = document.createElement('div');
+  entry.className = 'log-entry';
+  const now = new Date().toLocaleTimeString();
+  entry.innerHTML = `[${now}] ${a.source} > ${a.type}`;
+  
+  log.insertBefore(entry, log.firstChild); // El más nuevo arriba
+
+  // Mantener solo los últimos 10 logs en pantalla
+  if (log.children.length > 10) {
+    log.removeChild(log.lastChild);
   }
 }
 
 async function fetchAttacks() {
   try {
     const res = await fetch("https://cyber-attack-api-production.up.railway.app/attacks");
-    if (!res.ok) throw new Error("Error en la respuesta de la API");
-    
     const attacks = await res.json();
 
-    // Procesar de los más viejos a los más nuevos
     attacks.reverse().forEach(a => {
       if (a.id > lastId) {
         drawAttack(a);
@@ -94,10 +102,9 @@ async function fetchAttacks() {
       }
     });
   } catch (err) {
-    console.error("Error cargando ataques:", err);
+    console.error("API Error:", err);
   }
 }
 
-// Ejecución inicial y cada 10 segundos
 fetchAttacks();
-setInterval(fetchAttacks, 10000);
+setInterval(fetchAttacks, 10000); // Revisa la base de datos cada 60 seg

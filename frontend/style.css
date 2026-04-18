@@ -1,48 +1,88 @@
 body {
     margin: 0;
     padding: 0;
-    overflow: hidden; /* Evita scrolls innecesarios */
-    background-color: #0b0d0f; /* Fondo oscuro por si el mapa tarda en cargar */
+    overflow: hidden;
+    background-color: #05070a; /* Más oscuro aún */
 }
 
 #map {
     height: 100vh;
     width: 100vw;
-    z-index: 1; /* El mapa queda al fondo */
+    z-index: 1;
+    background: #05070a;
 }
 
+/* UI a la derecha estilo Checkpoint */
 .ui-overlay {
     position: absolute;
     top: 20px;
-    left: 20px;
-    z-index: 1000; /* Siempre por encima del mapa (Leaflet usa hasta 400-600) */
+    right: 20px; /* Movido a la derecha */
+    z-index: 1000;
     
-    background: rgba(10, 15, 20, 0.85); /* Fondo más sólido y oscuro */
+    background: rgba(10, 15, 20, 0.9);
     color: #00ff00;
     font-family: 'Courier New', Courier, monospace;
     padding: 20px;
-    border: 1px solid #00ff00;
-    border-radius: 4px;
-    box-shadow: 0 0 15px rgba(0, 255, 0, 0.3);
-    pointer-events: none; /* Permite clickear el mapa a través del panel */
-    min-width: 250px;
+    border-left: 3px solid #00ff00; /* Borde lateral acentuado */
+    border-radius: 0 4px 4px 0;
+    box-shadow: -5px 0 20px rgba(0, 0, 0, 0.8);
+    width: 300px;
+    max-height: 85vh;
+    display: flex;
+    flex-direction: column;
 }
 
 .ui-overlay h1 {
-    margin: 0 0 10px 0;
-    font-size: 1.2rem;
-    letter-spacing: 2px;
-    border-bottom: 1px solid #00ff00;
-    padding-bottom: 5px;
+    margin: 0 0 15px 0;
+    font-size: 1.1rem;
+    letter-spacing: 1px;
+    border-bottom: 1px solid rgba(0, 255, 0, 0.3);
+    padding-bottom: 10px;
+    text-align: center;
 }
 
-#stats {
-    font-weight: bold;
-    font-size: 1rem;
+.panel-section {
+    margin-top: 20px;
 }
 
-/* Efecto de parpadeo para el contador (opcional) */
-#count {
+.label {
+    font-size: 0.7rem;
+    color: #888;
+    margin-bottom: 5px;
+}
+
+#attack-log {
+    margin-top: 10px;
+    font-size: 0.75rem;
+    overflow-y: hidden;
+    max-height: 300px;
+    border-top: 1px solid rgba(0, 255, 0, 0.1);
+}
+
+.log-entry {
+    padding: 8px 0;
+    border-bottom: 1px solid rgba(0, 255, 0, 0.05);
+    animation: slideIn 0.3s ease-out;
+}
+
+@keyframes slideIn {
+    from { opacity: 0; transform: translateX(20px); }
+    to { opacity: 1; transform: translateX(0); }
+}
+
+/* Estilo de los nombres sobre el mapa */
+.map-label {
+    background: transparent;
+    border: none;
+    box-shadow: none;
     color: #fff;
-    text-shadow: 0 0 5px #fff;
+    font-family: 'Courier New', monospace;
+    font-weight: bold;
+    text-shadow: 0 0 5px #000, 0 0 10px #ff0000;
+    font-size: 12px;
+}
+
+/* Cambiar color de los mapas para que sea más oscuro */
+.leaflet-tile-pane {
+    filter: brightness(0.2) invert(1) contrast(3) hue-rotate(180deg) saturate(0.3);
 }
