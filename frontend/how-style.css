@@ -1,50 +1,145 @@
-/* --- Mejora de Tamaño de Imagen --- */
-.architecture-wrapper {
-    width: 98%; /* Casi todo el ancho */
-    max-width: 1800px; /* Permitimos que crezca más en monitores grandes */
-    padding: 10px;
+/* Reset total para evitar fondos blancos indeseados */
+* {
+    box-sizing: border-box;
+}
+
+body {
+    margin: 0;
+    padding: 0;
+    background-color: #05070a;
+    color: #00ff00;
+    font-family: 'Courier New', monospace;
     display: flex;
     justify-content: center;
+    align-items: flex-start; /* Alinea al inicio para permitir scroll si es necesario */
+    min-height: 100vh;
 }
 
-/* --- Flecha GitHub con Ángulo (Marca Roja) --- */
-.arrow-to-git {
-    height: 50px; /* Un poco más larga para que el ángulo se note */
-    top: -45px;
-    left: -20px; /* La desplazamos a la izquierda */
-    transform: rotate(-35deg); /* Inclinación hacia el icono */
-    transform-origin: bottom; /* La rotación nace desde la punta de la flecha */
+.architecture-wrapper {
+    width: 98%;
+    max-width: 1600px;
+    padding: 20px 0;
 }
 
-/* --- Flecha Vercel (Marca Amarilla) --- */
-.arrow-from-vercel {
-    height: 50px;
-    bottom: -55px;
-    transform: rotate(10deg); /* Pequeña inclinación para que no sea rígida */
+/* El Contenedor que "manda": debe ser relativo para que los hijos no escapen */
+.relative-container {
+    position: relative;
+    width: 100%;
+    line-height: 0; /* Elimina espacios fantasma debajo de la imagen */
 }
 
-/* --- Ajuste de los Botones --- */
+.main-img {
+    width: 100%;
+    height: auto;
+    display: block;
+    border: 2px solid #ff00c8;
+    border-radius: 8px;
+    box-shadow: 0 0 30px rgba(0, 255, 0, 0.2);
+}
+
+/* Título dentro del cuadro (Marca Azul) */
+.header-overlay {
+    position: absolute;
+    top: 4%; 
+    left: 50%;
+    transform: translateX(-50%);
+    width: 40%;
+    text-align: center;
+    line-height: normal; /* Restaura el texto */
+}
+
+.header-overlay h2 {
+    font-size: 1.4vw; /* Tamaño dinámico según el ancho de la pantalla */
+    margin: 0;
+    text-shadow: 0 0 10px #00ff00;
+}
+
+/* Contenedores de botones */
+.element-wrapper {
+    position: absolute;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    line-height: normal;
+}
+
+/* Posiciones fijas sobre la imagen */
+.git-pos { bottom: 15%; left: 35%; } 
+.map-pos { top: 12%; right: 10%; }
+
 .bubble-btn {
-    width: 60px; /* Un pelín más grandes para mejor visibilidad */
-    height: 60px;
-    background: #000000;
-    border: 2px solid #00ff00; /* Borde verde para que resalte sobre la imagen oscura */
+    width: 4vw; /* Tamaño relativo a la imagen */
+    height: 4vw;
+    min-width: 45px;
+    min-height: 45px;
+    background: #000;
+    border: 2px solid #00ff00;
     border-radius: 50%;
     display: flex;
     justify-content: center;
     align-items: center;
-    box-shadow: 0 0 20px rgba(0, 255, 0, 0.4);
-    transition: 0.3s;
+    box-shadow: 0 0 15px rgba(0, 255, 0, 0.5);
+    transition: transform 0.3s;
     text-decoration: none;
-    padding: 0; 
-    overflow: hidden; /* Para que la imagen no se escape del círculo */
 }
 
+.bubble-btn:hover { transform: scale(1.1); }
+
 .bubble-btn img {
-    width: 70%; /* Ajuste fino del tamaño del logo */
+    width: 70%;
     height: auto;
 }
 
-/* Posiciones actualizadas para que no tapen el texto de la imagen */
-.git-pos { bottom: 12%; left: 35%; } 
-.map-pos { top: 8%; right: 8%; }
+.label {
+    position: absolute;
+    bottom: -25px;
+    font-size: 0.8vw;
+    min-size: 10px;
+    white-space: nowrap;
+    background: rgba(0,0,0,0.8);
+    padding: 2px 5px;
+    border: 1px solid #00ff00;
+}
+
+/* Flechas con ángulo corregidas */
+.arrow-animated {
+    width: 3px;
+    background: #00ff00;
+    position: absolute;
+    animation: pulseArrow 1.5s infinite ease-in-out;
+}
+
+/* Flecha GitHub: Inclinada apuntando al icono */
+.arrow-to-git {
+    height: 60px;
+    top: -65px;
+    left: -20px;
+    transform: rotate(-30deg);
+    transform-origin: bottom center;
+}
+.arrow-to-git::after {
+    content: '▼';
+    position: absolute;
+    bottom: -10px;
+    left: -6px;
+    color: #00ff00;
+}
+
+/* Flecha Vercel: Sale del cartel hacia el mapa */
+.arrow-from-vercel {
+    height: 60px;
+    bottom: -65px;
+    transform: rotate(20deg);
+}
+.arrow-from-vercel::before {
+    content: '▲';
+    position: absolute;
+    top: -10px;
+    left: -6px;
+    color: #00ff00;
+}
+
+@keyframes pulseArrow {
+    0%, 100% { opacity: 0.4; }
+    50% { opacity: 1; }
+}
