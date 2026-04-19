@@ -130,27 +130,29 @@ body {
     font-size: 14px;
 }
 
-/* --- FLECHA MAPA (Vertical hacia arriba) --- */
 .arrow-from-vercel {
-    width: 3px;                  /* Grosor de la línea */
-    height: 50px;                /* Largo vertical */
+    width: 3px;
+    height: 60px;                /* Largo para que llegue a tocar la caja de la imagen */
     background: #00ff00;
     position: absolute;
-    bottom: 110%;                /* Se ubica arriba del botón */
+    top: 110%;                   /* Se posiciona DEBAJO del botón */
     left: 50%;
     transform: translateX(-50%);
     box-shadow: 0 0 10px #00ff00;
-    animation: pulseVertical 1.5s infinite ease-in-out;
+    z-index: 5;
+    animation: pulseVerticalInverse 1.5s infinite ease-in-out;
 }
 
+/* La punta de la flecha arriba (señalando al botón) */
 .arrow-from-vercel::before {
-    content: '▲';                /* Punta hacia arriba */
+    content: '▲';
     position: absolute;
-    top: -10px;
+    top: -10px;                  /* En la parte superior de la línea verde */
     left: 50%;
     transform: translateX(-50%);
     color: #00ff00;
     font-size: 14px;
+    text-shadow: 0 0 8px #00ff00;
 }
 
 /* --- ANIMACIONES (Nombres distintos para que no choquen) --- */
