@@ -13,18 +13,23 @@ Este proyecto es un panel de visualización en tiempo real de amenazas cibernét
 - **Automatización (ETL):** **n8n** (Self-hosted) para la extracción y normalización de datos.
 
 ## 📂 Estructura del Repositorio
+
+```
 /
 ├── backend/            # Servidor Express y lógica de Base de Datos
 │   ├── data/           # Persistencia SQLite
 │   ├── src/            # Rutas y controladores
 │   └── Dockerfile      # Configuración para despliegue en Railway
+│
 ├── frontend/           # Interfaz de usuario y lógica del mapa
 │   ├── css/            # Estilos neón y layout responsivo
 │   ├── img/            # Iconografía y recursos visuales
 │   ├── js/             # Implementación de Leaflet y Fetch API
 │   ├── index.html      # El Monitor (Main View)
-│   └── how-it-works.html # Diagrama interactivo de arquitectura
+│   └── how-it-works.html  # Diagrama interactivo de arquitectura
+│
 └── README.md
+```
 
 ## 🧩 Flujo del Sistema
 1. **Extracción**: n8n consulta cada 30 segundos la API de **Abuse.ch** obteniendo IPs de servidores C&C.
