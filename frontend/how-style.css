@@ -38,19 +38,17 @@ body {
     border-bottom: 2px solid #ff00c8;
 }
 
-/* --- Arreglo de la imagen de GitHub --- */
+
 .bubble-btn img {
-    width: 80%; /* Un poco más grande para que luzca */
-    height: 80%; /* Mantenemos proporción */
-    object-fit: cover; /* Asegura que llene el espacio sin deformarse */
-    border-radius: 50%; /* ESTO hace que la imagen cuadrada sea REDONDA */
+    width: 80%;
+    height: 80%; 
+    object-fit: cover; 
+    border-radius: 50%; 
 }
 
 /* Re-calibración de posiciones para pantalla completa */
-.git-pos { bottom: 15%; left: 34%; } 
-.map-pos { top: 11%; right: 9%; }
-
-/* --- Resto de tus estilos se mantienen igual --- */
+.git-pos { bottom: 15%; left: 25%; } 
+.map-pos { top: 5%; right: 13%; }
 
 .header-overlay {
     position: absolute;
