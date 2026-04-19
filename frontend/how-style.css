@@ -115,9 +115,9 @@ body {
 
 .arrow-to-git {
     height: 50px;
-    top: -55px;
-    left: -15px;
-    transform: rotate(-30deg);
+    top: -75px;
+    left: 40x;
+    transform: rotate(40deg);
     transform-origin: bottom center;
 }
 .arrow-to-git::after {
