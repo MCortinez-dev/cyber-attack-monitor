@@ -16,25 +16,25 @@ body {
 }
 
 .architecture-wrapper {
-    width: 98%;
-    max-width: 1600px;
-    padding: 20px 0;
+    width: 100%;       /* Ocupa el 100% de la pantalla */
+    max-width: none;   /* Eliminam el tope de px */
+    padding: 0;        /* Rara que pegue a los bordes */
 }
 
 /* El Contenedor que "manda": debe ser relativo para que los hijos no escapen */
 .relative-container {
     position: relative;
-    width: 100%;
-    line-height: 0; /* Elimina espacios fantasma debajo de la imagen */
+    width: 100vw;      /* 100% del ancho de la ventana del navegador */
+    line-height: 0;
+    overflow: hidden;  /* Evita scroll horizontal accidental */
 }
 
 .main-img {
-    width: 100%;
-    height: auto;
+    width: 100vw;      /* Obliga a la imagen a medir lo mismo que la ventana */
+    height: auto;      /* Mantiene la proporción para no deformarse */
     display: block;
-    border: 2px solid #ff00c8;
-    border-radius: 8px;
-    box-shadow: 0 0 30px rgba(0, 255, 0, 0.2);
+    border: none;      
+    border-bottom: 2px solid #ff00c8; /* Opcional: solo borde abajo para cerrar */
 }
 
 /* Título dentro del cuadro (Marca Azul) */
@@ -68,10 +68,12 @@ body {
 .map-pos { top: 12%; right: 10%; }
 
 .bubble-btn {
-    width: 4vw; /* Tamaño relativo a la imagen */
-    height: 4vw;
-    min-width: 45px;
-    min-height: 45px;
+    width: 5vw; 
+    height: 5vw;
+    min-width: 50px;   /* Para que en móvil no desaparezcan */
+    min-height: 50px;
+    max-width: 80px;   /* Para que en monitores 4K no sean enormes */
+    max-height: 80px;
     background: #000;
     border: 2px solid #00ff00;
     border-radius: 50%;
@@ -80,7 +82,6 @@ body {
     align-items: center;
     box-shadow: 0 0 15px rgba(0, 255, 0, 0.5);
     transition: transform 0.3s;
-    text-decoration: none;
 }
 
 .bubble-btn:hover { transform: scale(1.1); }
