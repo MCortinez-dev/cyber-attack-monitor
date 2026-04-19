@@ -1,43 +1,57 @@
-/* Reset total para evitar fondos blancos indeseados */
 * {
     box-sizing: border-box;
+    margin: 0;
+    padding: 0;
 }
 
 body {
-    margin: 0;
-    padding: 0;
     background-color: #05070a;
     color: #00ff00;
     font-family: 'Courier New', monospace;
     display: flex;
-    justify-content: center;
-    align-items: flex-start; /* Alinea al inicio para permitir scroll si es necesario */
+    flex-direction: column;
+    align-items: flex-start; /* Alinea al borde izquierdo */
+    justify-content: flex-start; /* Empieza desde arriba */
     min-height: 100vh;
+    width: 100vw;
+    overflow-x: hidden; /* Prohibido el scroll horizontal */
 }
 
 .architecture-wrapper {
-    width: 100%;       /* Ocupa el 100% de la pantalla */
-    max-width: none;   /* Eliminam el tope de px */
-    padding: 0;        /* Rara que pegue a los bordes */
+    width: 100vw; 
+    max-width: none;
+    padding: 0;
+    margin: 0;
 }
 
-/* El Contenedor que "manda": debe ser relativo para que los hijos no escapen */
 .relative-container {
     position: relative;
-    width: 100vw;      /* 100% del ancho de la ventana del navegador */
+    width: 100vw;
     line-height: 0;
-    overflow: hidden;  /* Evita scroll horizontal accidental */
 }
 
 .main-img {
-    width: 100vw;      /* Obliga a la imagen a medir lo mismo que la ventana */
-    height: auto;      /* Mantiene la proporción para no deformarse */
+    width: 100vw;
+    height: auto;
     display: block;
-    border: none;      
-    border-bottom: 2px solid #ff00c8; /* Opcional: solo borde abajo para cerrar */
+    border: none;
+    border-bottom: 2px solid #ff00c8;
 }
 
-/* Título dentro del cuadro (Marca Azul) */
+/* --- Arreglo de la imagen de GitHub --- */
+.bubble-btn img {
+    width: 80%; /* Un poco más grande para que luzca */
+    height: 80%; /* Mantenemos proporción */
+    object-fit: cover; /* Asegura que llene el espacio sin deformarse */
+    border-radius: 50%; /* ESTO hace que la imagen cuadrada sea REDONDA */
+}
+
+/* Re-calibración de posiciones para pantalla completa */
+.git-pos { bottom: 15%; left: 34%; } 
+.map-pos { top: 11%; right: 9%; }
+
+/* --- Resto de tus estilos se mantienen igual --- */
+
 .header-overlay {
     position: absolute;
     top: 4%; 
@@ -45,16 +59,15 @@ body {
     transform: translateX(-50%);
     width: 40%;
     text-align: center;
-    line-height: normal; /* Restaura el texto */
+    line-height: normal;
 }
 
 .header-overlay h2 {
-    font-size: 1.4vw; /* Tamaño dinámico según el ancho de la pantalla */
+    font-size: 1.5vw;
     margin: 0;
     text-shadow: 0 0 10px #00ff00;
 }
 
-/* Contenedores de botones */
 .element-wrapper {
     position: absolute;
     display: flex;
@@ -63,17 +76,13 @@ body {
     line-height: normal;
 }
 
-/* Posiciones fijas sobre la imagen */
-.git-pos { bottom: 15%; left: 35%; } 
-.map-pos { top: 12%; right: 10%; }
-
 .bubble-btn {
-    width: 5vw; 
-    height: 5vw;
-    min-width: 50px;   /* Para que en móvil no desaparezcan */
-    min-height: 50px;
-    max-width: 80px;   /* Para que en monitores 4K no sean enormes */
-    max-height: 80px;
+    width: 5.5vw; 
+    height: 5.5vw;
+    min-width: 55px;
+    min-height: 55px;
+    max-width: 85px;
+    max-height: 85px;
     background: #000;
     border: 2px solid #00ff00;
     border-radius: 50%;
@@ -82,27 +91,23 @@ body {
     align-items: center;
     box-shadow: 0 0 15px rgba(0, 255, 0, 0.5);
     transition: transform 0.3s;
+    overflow: hidden; /* Corta cualquier excedente de la imagen */
 }
 
 .bubble-btn:hover { transform: scale(1.1); }
-
-.bubble-btn img {
-    width: 70%;
-    height: auto;
-}
 
 .label {
     position: absolute;
     bottom: -25px;
     font-size: 0.8vw;
-    min-size: 10px;
+    min-width: 10px;
     white-space: nowrap;
     background: rgba(0,0,0,0.8);
     padding: 2px 5px;
     border: 1px solid #00ff00;
 }
 
-/* Flechas con ángulo corregidas */
+/* Flechas Animadas */
 .arrow-animated {
     width: 3px;
     background: #00ff00;
@@ -110,11 +115,10 @@ body {
     animation: pulseArrow 1.5s infinite ease-in-out;
 }
 
-/* Flecha GitHub: Inclinada apuntando al icono */
 .arrow-to-git {
-    height: 60px;
-    top: -65px;
-    left: -20px;
+    height: 50px;
+    top: -55px;
+    left: -15px;
     transform: rotate(-30deg);
     transform-origin: bottom center;
 }
@@ -126,10 +130,9 @@ body {
     color: #00ff00;
 }
 
-/* Flecha Vercel: Sale del cartel hacia el mapa */
 .arrow-from-vercel {
-    height: 60px;
-    bottom: -65px;
+    height: 50px;
+    bottom: -55px;
     transform: rotate(20deg);
 }
 .arrow-from-vercel::before {
