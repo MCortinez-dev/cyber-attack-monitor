@@ -131,7 +131,6 @@ body {
 .arrow-from-vercel {
     height: 50px;
     bottom: -55px;
-    transform: rotate(20deg);
 }
 .arrow-from-vercel::before {
     content: '▲';
