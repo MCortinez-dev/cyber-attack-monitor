@@ -115,12 +115,13 @@ body {
 
 .arrow-to-git {
     height: 50px;
-    left: 40x;
+    top: -20px;
+    left: 60x;
     transform: rotate(40deg);
     transform-origin: bottom center;
 }
-.arrow-to-git::after {
-    content: '▼';
+.arrow-to-git::before {
+    content: '▶';
     position: absolute;
     bottom: -10px;
     left: -6px;
