@@ -16,19 +16,29 @@ Este proyecto es un panel de visualización en tiempo real de amenazas cibernét
 
 ```
 /
-├── backend/            # Servidor Express y lógica de Base de Datos
-│   ├── data/           # Persistencia SQLite
-│   ├── src/            # Rutas y controladores
-│   └── Dockerfile      # Configuración para despliegue en Railway
-│
-├── frontend/           # Interfaz de usuario y lógica del mapa
-│   ├── css/            # Estilos neón y layout responsivo
-│   ├── img/            # Iconografía y recursos visuales
-│   ├── js/             # Implementación de Leaflet y Fetch API
-│   ├── index.html      # El Monitor (Main View)
-│   └── how-it-works.html  # Diagrama interactivo de arquitectura
-│
-└── README.md
+│   .gitignore
+│   LICENSE
+│   README.md
+│   
+├───backend ---------------- # Servidor Express y lógica de Base de Datos
+│       Dockerfile --------- # Configuración para despliegue en Railway
+│       package.json
+│       server.js
+│       
+├───frontend
+    │   app.js ------------- # Implementación de Leaflet y Fetch API
+    │   how-it-works.html
+    │   how-style.css
+    │   index.html --------- # El Monitor (Main View)
+    │   style.css
+    │   
+    └───img
+            favicon.ico
+            favicon.png
+            float.png
+            git.png
+            how-it-works.png
+           
 ```
 
 ## 🧩 Flujo del Sistema
