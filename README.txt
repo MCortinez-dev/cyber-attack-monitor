@@ -42,5 +42,5 @@ Este proyecto es un panel de visualización en tiempo real de amenazas cibernét
 Este proyecto está bajo la Licencia **MIT**. Podés usarlo, modificarlo y distribuirlo libremente citando la autoría.
 
 ## 🌐 Screenshots
-![Live Map](screenshot/livemap.png)
+![Live Map](screenshot/how-it-works-png)
 ![How it works](screenshot/how-it-works.png)
