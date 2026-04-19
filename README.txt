@@ -5,7 +5,7 @@ Este proyecto es un panel de visualización en tiempo real de amenazas cibernét
 ## 🚀 Demos
 - **Mapa en Vivo:** [https://cyber-attack-map-iota.vercel.app/](https://cyber-attack-map-iota.vercel.app/)
 - **Explicación de Arquitectura:** [/how-it-works.html](https://cyber-attack-map-iota.vercel.app/how-it-works.html)
-- **API Backend:** `https://cyber-attack-api-production.up.railway.app/attacks`
+- **API Backend:** https://cyber-attack-api-production.up.railway.app/attacks
 
 ## 🛠️ Stack Tecnológico
 - **Frontend:** HTML5, CSS3 (Estética Cyberpunk), JavaScript Vanilla y **Leaflet.js** para mapeo geoespacial.
