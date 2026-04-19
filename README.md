@@ -47,7 +47,7 @@ Este proyecto es un panel de visualización en tiempo real de amenazas cibernét
 3. **Almacenamiento**: El backend en **Railway** guarda los datos en SQLite y mantiene un historial de 500 registros.
 4. **Visualización**: El frontend en **Vercel** consulta la API cada 10 segundos para actualizar las trayectorias.
 
-## 🧠 Habilidades Técnicas Demostradas
+## 🧠 Habilidades Técnicas Usadas
 - **Desarrollo Fullstack**: Integración de servicios desacoplados (Frontend-Backend-DB).
 - **Manipulación de Datos**: Creación de pipelines ETL automatizados.
 - **UI/UX**: Diseño de interfaces "Low-latency" con estética avanzada mediante CSS puro.
