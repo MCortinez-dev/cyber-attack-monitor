@@ -105,67 +105,61 @@ body {
     border: 1px solid #00ff00;
 }
 
-/* Flechas Animadas */
+/* --- FLECHA GIT (Horizontal hacia la derecha) --- */
 .arrow-to-git {
-    width: 60px;           /* El largo de la flecha ahora es horizontal */
-    height: 3px;           /* El grosor */
+    width: 60px;                 /* Largo de la flecha */
+    height: 3px;                 /* Grosor de la línea */
     background: #00ff00;
     position: absolute;
-    top: 50%;              /* Centrada verticalmente respecto al botón */
-    left: 100%;            /* Empieza donde termina el botón (derecha) */
-    margin-left: 10px;     /* Pequeño espacio para que no toque el borde del círculo */
-    transform: translateY(-50%); /* Centrado fino */
+    top: 50%;                    /* Centrada al medio del botón */
+    left: 100%;                  /* Sale desde el borde derecho */
+    margin-left: 10px;           /* Separación del botón */
+    transform: translateY(-50%);
     box-shadow: 0 0 10px #00ff00;
+    z-index: 5;
+    animation: pulseHorizontal 1.5s infinite ease-in-out; /* Animación específica */
 }
 
-/* La punta de la flecha (triángulo mirando a la derecha) */
 .arrow-to-git::after {
-    content: '▶';         
+    content: '▶';                /* Punta hacia la derecha */
     position: absolute;
-    right: -5px;           /* En la punta derecha */
+    right: -5px;
     top: 50%;
     transform: translateY(-50%);
     color: #00ff00;
     font-size: 14px;
-    text-shadow: 0 0 8px #00ff00;
 }
 
-/* Animación de pulso horizontal */
-@keyframes pulseArrow {
-    0%, 100% { 
-        opacity: 0.4; 
-        transform: translateY(-50%) translateX(0); 
-    }
-    50% { 
-        opacity: 1; 
-        transform: translateY(-50%) translateX(10px); /* Se mueve a la derecha */
-    }
-}
-
-/* Aplicamos la animación */
-.arrow-to-git {
-    animation: pulseArrow 1.5s infinite ease-in-out;
-}
-.arrow-animated {
-    width: 3px;
+/* --- FLECHA MAPA (Vertical hacia arriba) --- */
+.arrow-from-vercel {
+    width: 3px;                  /* Grosor de la línea */
+    height: 50px;                /* Largo vertical */
     background: #00ff00;
     position: absolute;
-    animation: pulseArrow 1.5s infinite ease-in-out;
+    bottom: 110%;                /* Se ubica arriba del botón */
+    left: 50%;
+    transform: translateX(-50%);
+    box-shadow: 0 0 10px #00ff00;
+    animation: pulseVertical 1.5s infinite ease-in-out;
 }
 
-.arrow-from-vercel {
-    height: 50px;
-    bottom: -75px;
-}
 .arrow-from-vercel::before {
-    content: '▲';
+    content: '▲';                /* Punta hacia arriba */
     position: absolute;
     top: -10px;
-    left: -6px;
+    left: 50%;
+    transform: translateX(-50%);
     color: #00ff00;
+    font-size: 14px;
 }
 
-@keyframes pulseArrow {
-    0%, 100% { opacity: 0.4; }
-    50% { opacity: 1; }
+/* --- ANIMACIONES (Nombres distintos para que no choquen) --- */
+@keyframes pulseHorizontal {
+    0%, 100% { opacity: 0.4; transform: translateY(-50%) translateX(0); }
+    50% { opacity: 1; transform: translateY(-50%) translateX(10px); }
+}
+
+@keyframes pulseVertical {
+    0%, 100% { opacity: 0.4; transform: translateX(-50%) translateY(0); }
+    50% { opacity: 1; transform: translateX(-50%) translateY(-10px); }
 }
