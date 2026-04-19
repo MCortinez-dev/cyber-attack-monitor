@@ -56,13 +56,13 @@ body {
 }
 
 /* Posiciones exactas  */
-.git-pos { bottom: 15%; left: 38%; } /* Marca Roja */
-.map-pos { top: 15%; right: 10%; }   /* Marca Amarilla */
+.git-pos { bottom: 15%; left: 25%; } /* Marca Roja */
+.map-pos { top: 10%; right: 5%; }   /* Marca Amarilla */
 
 .bubble-btn {
     width: 50px;
     height: 50px;
-    background: #fff;
+    background: #000000;
     border-radius: 50%;
     display: flex;
     justify-content: center;
