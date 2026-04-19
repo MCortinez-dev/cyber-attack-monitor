@@ -5,116 +5,35 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Architecture | How it works</title>
     <link rel="icon" type="image/x-icon" href="img/favicon.ico">
-    <style>
-        body {
-            margin: 0;
-            padding: 0;
-            background-color: #05070a;
-            color: #00ff00;
-            font-family: 'Courier New', monospace;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            justify-content: center;
-            min-height: 100vh;
-            overflow-x: hidden;
-        }
-
-        h2 {
-            margin: 20px 0;
-            text-shadow: 0 0 10px #00ff00;
-            font-size: 1.5rem;
-            text-align: center;
-        }
-
-        .img-container {
-            width: 90%;
-            max-width: 1400px;
-            margin-bottom: 50px;
-        }
-
-        .main-img {
-            width: 100%;
-            height: auto;
-            border: 1px solid #00ff00;
-            border-radius: 8px;
-            box-shadow: 0 0 30px rgba(0, 255, 0, 0.15);
-        }
-
-        /* Estilo común para los botones flotantes (Burbujas) */
-        .floating-bubble {
-            position: fixed;
-            width: 60px;
-            height: 60px;
-            background-color: #fff;
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            box-shadow: 0 4px 15px rgba(0,0,0,0.5), 0 0 0 4px rgba(255,255,255,0.2);
-            transition: transform 0.3s ease, box-shadow 0.3s ease;
-            z-index: 1001;
-            cursor: pointer;
-            text-decoration: none;
-        }
-
-        .floating-bubble:hover {
-            transform: scale(1.1);
-            box-shadow: 0 6px 20px rgba(0,255,0,0.4), 0 0 0 6px rgba(255,255,255,0.3);
-        }
-
-        .floating-bubble img {
-            width: 35px;
-            height: 35px;
-            border-radius: 50%;
-        }
-
-        /* Posicionamiento pedido: Superior Derecha (Home/Mapa) */
-        .btn-home {
-            top: 20px;
-            right: 20px;
-        }
-
-        /* Posicionamiento pedido: Inferior Izquierda (GitHub) */
-        .btn-github {
-            bottom: 20px;
-            left: 20px;
-        }
-
-        /* Etiqueta de texto para los botones */
-        .bubble-label {
-            position: absolute;
-            background: rgba(0,0,0,0.8);
-            color: #00ff00;
-            font-size: 10px;
-            padding: 2px 6px;
-            border: 1px solid #00ff00;
-            white-space: nowrap;
-            pointer-events: none;
-        }
-
-        .btn-home .bubble-label { bottom: -20px; }
-        .btn-github .bubble-label { top: -20px; }
-
-    </style>
+    <link rel="stylesheet" href="how-style.css">
 </head>
 <body>
 
-    <h2>SYSTEM ARCHITECTURE FLOW</h2>
+    <main class="architecture-wrapper">
+        <div class="relative-container">
+            <img src="img/how-it-works.png" alt="Architecture Diagram" class="main-img">
 
-    <div class="img-container">
-        <img src="img/how-it-works.png" alt="Architecture Diagram" class="main-img">
-    </div>
+            <header class="header-overlay">
+                <h2>SYSTEM ARCHITECTURE FLOW</h2>
+            </header>
 
-    <a href="index.html" class="floating-bubble btn-home">
-        <img src="img/favicon.ico" alt="Map">
-        <span class="bubble-label">LIVE MAP</span>
-    </a>
+            <div class="element-wrapper git-pos">
+                <div class="arrow-animated arrow-to-git"></div>
+                <a href="https://github.com/MCortinez-dev" target="_blank" class="bubble-btn">
+                    <img src="img/git.png" alt="GitHub">
+                    <span class="label">GITHUB REPO</span>
+                </a>
+            </div>
 
-    <a href="https://github.com/MCortinez-dev" target="_blank" class="floating-bubble btn-github">
-        <img src="img/git.png" alt="GitHub">
-        <span class="bubble-label">GITHUB REPO</span>
-    </a>
+            <div class="element-wrapper map-pos">
+                <div class="arrow-animated arrow-from-vercel"></div>
+                <a href="index.html" class="bubble-btn">
+                    <img src="img/favicon.ico" alt="Map">
+                    <span class="label">LIVE MAP</span>
+                </a>
+            </div>
+        </div>
+    </main>
 
 </body>
 </html>

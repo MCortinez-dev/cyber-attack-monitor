@@ -1,0 +1,134 @@
+/* Reset y Base Semántica */
+body {
+    margin: 0;
+    padding: 0;
+    background-color: #05070a;
+    color: #00ff00;
+    font-family: 'Courier New', monospace;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+}
+
+.architecture-wrapper {
+    width: 95%;
+    max-width: 1400px;
+    padding: 20px;
+}
+
+/* El Contenedor Maestro: Todo lo que esté adentro se posiciona respecto a la imagen */
+.relative-container {
+    position: relative;
+    width: 100%;
+}
+
+.main-img {
+    width: 100%;
+    display: block;
+    border: 1px solid #ff00c8; /* Tu borde rosa/fucsia */
+    border-radius: 8px;
+    box-shadow: 0 0 30px rgba(0, 255, 0, 0.15);
+}
+
+/* Título dentro del cuadro verde */
+.header-overlay {
+    position: absolute;
+    top: 2%; /* Ajustá estos % para centrarlo  */
+    left: 50%;
+    transform: translateX(-50%);
+    width: 30%;
+    text-align: center;
+}
+
+.header-overlay h2 {
+    font-size: 1.2rem;
+    margin: 0;
+    text-shadow: 0 0 10px #00ff00;
+}
+
+/* Botones y Flechas */
+.element-wrapper {
+    position: absolute;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+/* Posiciones exactas  */
+.git-pos { bottom: 15%; left: 38%; } /* Marca Roja */
+.map-pos { top: 15%; right: 10%; }   /* Marca Amarilla */
+
+.bubble-btn {
+    width: 50px;
+    height: 50px;
+    background: #fff;
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    box-shadow: 0 0 15px #00ff00;
+    transition: 0.3s;
+    text-decoration: none;
+    padding: 2px; /* Bordes más chicos para que la imagen sea más grande */
+}
+
+.bubble-btn img {
+    width: 85%; /* Imagen más grande dentro del botón */
+    height: auto;
+}
+
+.bubble-btn:hover { transform: scale(1.2); }
+
+.label {
+    position: absolute;
+    bottom: -20px;
+    font-size: 10px;
+    white-space: nowrap;
+    background: rgba(0,0,0,0.7);
+}
+
+/* Flechas Animadas */
+.arrow-animated {
+    width: 2px;
+    background: #00ff00;
+    position: absolute;
+    animation: pulseArrow 1.5s infinite ease-in-out;
+}
+
+/* Flecha Git: apunta al icono */
+.arrow-to-git {
+    height: 30px;
+    top: -35px;
+}
+.arrow-to-git::after {
+    content: '▼';
+    position: absolute;
+    bottom: -5px;
+    left: -5px;
+    font-size: 12px;
+}
+
+/* Flecha Vercel: sale del cartel */
+.arrow-from-vercel {
+    height: 40px;
+    bottom: -45px;
+}
+.arrow-from-vercel::before {
+    content: '▲';
+    position: absolute;
+    top: -5px;
+    left: -5px;
+    font-size: 12px;
+}
+
+@keyframes pulseArrow {
+    0%, 100% { opacity: 0.3; transform: translateY(0); }
+    50% { opacity: 1; transform: translateY(5px); }
+}
+
+/* Responsive: achicar fuentes en móviles */
+@media (max-width: 768px) {
+    .header-overlay h2 { font-size: 0.8rem; }
+    .bubble-btn { width: 40px; height: 40px; }
+}
