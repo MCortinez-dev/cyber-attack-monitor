@@ -106,26 +106,51 @@ body {
 }
 
 /* Flechas Animadas */
+.arrow-to-git {
+    width: 60px;           /* El largo de la flecha ahora es horizontal */
+    height: 3px;           /* El grosor */
+    background: #00ff00;
+    position: absolute;
+    top: 50%;              /* Centrada verticalmente respecto al botón */
+    left: 100%;            /* Empieza donde termina el botón (derecha) */
+    margin-left: 10px;     /* Pequeño espacio para que no toque el borde del círculo */
+    transform: translateY(-50%); /* Centrado fino */
+    box-shadow: 0 0 10px #00ff00;
+}
+
+/* La punta de la flecha (triángulo mirando a la derecha) */
+.arrow-to-git::after {
+    content: '▶';         
+    position: absolute;
+    right: -5px;           /* En la punta derecha */
+    top: 50%;
+    transform: translateY(-50%);
+    color: #00ff00;
+    font-size: 14px;
+    text-shadow: 0 0 8px #00ff00;
+}
+
+/* Animación de pulso horizontal */
+@keyframes pulseArrow {
+    0%, 100% { 
+        opacity: 0.4; 
+        transform: translateY(-50%) translateX(0); 
+    }
+    50% { 
+        opacity: 1; 
+        transform: translateY(-50%) translateX(10px); /* Se mueve a la derecha */
+    }
+}
+
+/* Aplicamos la animación */
+.arrow-to-git {
+    animation: pulseArrow 1.5s infinite ease-in-out;
+}
 .arrow-animated {
     width: 3px;
     background: #00ff00;
     position: absolute;
     animation: pulseArrow 1.5s infinite ease-in-out;
-}
-
-.arrow-to-git {
-    height: 50px;
-    top: -20px;
-    left: 60x;
-    transform: rotate(40deg);
-    transform-origin: bottom center;
-}
-.arrow-to-git::before {
-    content: '▶';
-    position: absolute;
-    bottom: -10px;
-    left: -6px;
-    color: #00ff00;
 }
 
 .arrow-from-vercel {
