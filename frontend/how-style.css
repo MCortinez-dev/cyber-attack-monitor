@@ -48,7 +48,30 @@ body {
 
 /* Re-calibración de posiciones para pantalla completa */
 .git-pos { bottom: 15%; left: 25%; } 
-.map-pos { top: 5%; right: 13%; }
+.map-pos { 
+    top: 5%; 
+    right: 13%; 
+    flex-direction: row; /* Alinea botón y cartel de lado a lado */
+    align-items: center; /* Los centra verticalmente entre sí */
+    gap: 15px; /* Espacio entre el botón y el cartel */
+}
+
+/* Ajustamos el label para que no esté posicionado de forma absoluta */
+.map-pos .label {
+    position: static; /* Quita el comportamiento de estar "flotando" abajo */
+    font-size: 0.8vw;
+    min-width: auto;
+    background: rgba(0,0,0,0.8);
+    padding: 5px 10px;
+    border: 1px solid #00ff00;
+    white-space: nowrap;
+    text-shadow: 0 0 5px #00ff00;
+}
+
+/* Mantenemos la flecha en su lugar relativo al botón */
+.map-pos .arrow-from-vercel {
+    left: 42px; /* Ajuste fino para que la flecha siga saliendo del botón y no del medio de los dos */
+}
 
 .header-overlay {
     position: absolute;
