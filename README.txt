@@ -1,31 +1,42 @@
-# Real-time Cyber Attack Monitor 🛡️🌐
+# 🛡️ Real-time Cyber Attack Monitor
 
-Este proyecto es un panel de visualización en tiempo real de amenazas cibernéticas globales. Utiliza una arquitectura distribuida para extraer, procesar y visualizar datos de ataques reales.
+Este proyecto es un panel de visualización en tiempo real de amenazas cibernéticas globales. Utiliza una arquitectura distribuida para extraer, procesar y visualizar datos de ataques reales mediante un flujo automatizado.
 
-## 🚀 Demo
-- **Frontend (Live):** [https://cyber-attack-map-iota.vercel.app/](https://cyber-attack-map-iota.vercel.app/)
+## 🚀 Demos
+- **Mapa en Vivo:** [https://cyber-attack-map-iota.vercel.app/](https://cyber-attack-map-iota.vercel.app/)
+- **Explicación de Arquitectura:** [/how-it-works.html](https://cyber-attack-map-iota.vercel.app/how-it-works.html)
 - **API Backend:** `https://cyber-attack-api-production.up.railway.app/attacks`
 
 ## 🛠️ Stack Tecnológico
-- **Frontend:** HTML5, CSS3 (Cyberpunk aesthetic), JavaScript (Vanilla) y [Leaflet.js](https://leafletjs.com/) para el mapeo geoespacial. Desplegado en **Vercel**.
-- **Backend:** Node.js con Express, utilizando **SQLite (better-sqlite3)** para persistencia liviana. Desplegado en **Railway**.
-- **Automatización (ETL):** **n8n** corriendo en servidor local (Linux) para la extracción y transformación de datos desde feeds de ciberseguridad.
-
-## 🧩 Arquitectura del Sistema
-El flujo de datos funciona de la siguiente manera:
-1. **Extracción:** n8n consulta cada 30 segundos la API de [Abuse.ch (Feodo Tracker)](https://abuse.ch/) obteniendo IPs de servidores de comando y control (C&C).
-2. **Procesamiento:** n8n normaliza el país de origen y el tipo de malware, enviándolos vía POST al backend.
-3. **Almacenamiento:** El backend en Railway recibe los datos, los guarda en una base de datos SQLite y realiza una auto-limpieza para mantener solo los últimos 500 registros.
-4. **Visualización:** El mapa en Vercel consulta la API del backend cada 10 segundos y dibuja las trayectorias de los ataques.
-
-## ⚠️ Notas Técnicas y Limitaciones (Issues)
-Para fines de este proyecto de portfolio, es importante notar:
-- **Origen de datos:** Los países de origen y los tipos de malware son **100% reales**, basados en actividad de botnets detectada recientemente.
-- **Simulación de destino:** Dado que los objetivos específicos de los ataques son información privada, los países de destino se asignan de forma aleatoria dentro de un conjunto de nodos de infraestructura global para facilitar la visualización de trayectorias.
-- **Persistencia:** La base de datos es efímera; se reinicia con cada despliegue del backend en Railway si no se utiliza un volumen persistente.
+- **Frontend:** HTML5, CSS3 (Estética Cyberpunk), JavaScript Vanilla y **Leaflet.js** para mapeo geoespacial.
+- **Backend:** Node.js con Express y **SQLite (better-sqlite3)** para una persistencia liviana y veloz.
+- **Automatización (ETL):** **n8n** (Self-hosted) para la extracción y normalización de datos.
 
 ## 📂 Estructura del Repositorio
 /
-├── backend/    # Servidor Express, Dockerfile y lógica de Base de Datos.
-├── frontend/   # Interfaz de usuario, estilos y lógica del mapa Leaflet.
+├── backend/            # Servidor Express y lógica de Base de Datos
+│   ├── data/           # Persistencia SQLite
+│   ├── src/            # Rutas y controladores
+│   └── Dockerfile      # Configuración para despliegue en Railway
+├── frontend/           # Interfaz de usuario y lógica del mapa
+│   ├── css/            # Estilos neón y layout responsivo
+│   ├── img/            # Iconografía y recursos visuales
+│   ├── js/             # Implementación de Leaflet y Fetch API
+│   ├── index.html      # El Monitor (Main View)
+│   └── how-it-works.html # Diagrama interactivo de arquitectura
 └── README.md
+
+## 🧩 Flujo del Sistema
+1. **Extracción**: n8n consulta cada 30 segundos la API de **Abuse.ch** obteniendo IPs de servidores C&C.
+2. **Procesamiento**: Se normalizan los datos (país, malware) y se envían vía POST al backend.
+3. **Almacenamiento**: El backend en **Railway** guarda los datos en SQLite y mantiene un historial de 500 registros.
+4. **Visualización**: El frontend en **Vercel** consulta la API cada 10 segundos para actualizar las trayectorias.
+
+## 🧠 Habilidades Técnicas Demostradas
+- **Desarrollo Fullstack**: Integración de servicios desacoplados (Frontend-Backend-DB).
+- **Manipulación de Datos**: Creación de pipelines ETL automatizados.
+- **UI/UX**: Diseño de interfaces "Low-latency" con estética avanzada mediante CSS puro.
+- **DevOps**: Despliegue continuo en múltiples plataformas y gestión de APIs.
+
+## ⚖️ Licencia
+Este proyecto está bajo la Licencia **MIT**. Podés usarlo, modificarlo y distribuirlo libremente citando la autoría.
