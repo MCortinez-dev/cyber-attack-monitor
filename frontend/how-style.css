@@ -161,7 +161,13 @@ body {
     50% { opacity: 1; transform: translateY(-50%) translateX(10px); }
 }
 
-@keyframes pulseVertical {
-    0%, 100% { opacity: 0.4; transform: translateX(-50%) translateY(0); }
-    50% { opacity: 1; transform: translateX(-50%) translateY(-10px); }
+@keyframes pulseVerticalInverse {
+    0%, 100% { 
+        opacity: 0.4; 
+        transform: translateX(-50%) translateY(0); 
+    }
+    50% { 
+        opacity: 1; 
+        transform: translateX(-50%) translateY(-10px); /* El salto es hacia el botón */
+    }
 }
