@@ -115,7 +115,6 @@ body {
 
 .arrow-to-git {
     height: 50px;
-    top: -75px;
     left: 40x;
     transform: rotate(40deg);
     transform-origin: bottom center;
@@ -130,7 +129,7 @@ body {
 
 .arrow-from-vercel {
     height: 50px;
-    bottom: -55px;
+    bottom: -75px;
 }
 .arrow-from-vercel::before {
     content: '▲';
