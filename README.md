@@ -43,6 +43,6 @@ Este proyecto está bajo la Licencia **MIT**. Podés usarlo, modificarlo y distr
 
 ## 🌐 Screenshots
 
-![Live Map](screenshot/livemap.png)
+![Live Map](screenshots/livemap.png)
 
-![How it works](screenshot/how-it-works.png)
+![How it works](screenshots/how-it-works.png)
