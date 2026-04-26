@@ -13,18 +13,33 @@ Este proyecto es un panel de visualización en tiempo real de amenazas cibernét
 - **Automatización (ETL):** **n8n** (Self-hosted) para la extracción y normalización de datos.
 
 ## 📂 Estructura del Repositorio
+
+```
 /
-├── backend/            # Servidor Express y lógica de Base de Datos
-│   ├── data/           # Persistencia SQLite
-│   ├── src/            # Rutas y controladores
-│   └── Dockerfile      # Configuración para despliegue en Railway
-├── frontend/           # Interfaz de usuario y lógica del mapa
-│   ├── css/            # Estilos neón y layout responsivo
-│   ├── img/            # Iconografía y recursos visuales
-│   ├── js/             # Implementación de Leaflet y Fetch API
-│   ├── index.html      # El Monitor (Main View)
-│   └── how-it-works.html # Diagrama interactivo de arquitectura
-└── README.md
+│   .gitignore
+│   LICENSE
+│   README.md
+│   
+├───backend ---------------- # Servidor Express y lógica de Base de Datos
+│       Dockerfile --------- # Configuración para despliegue en Railway
+│       package.json
+│       server.js
+│       
+├───frontend
+    │   app.js ------------- # Implementación de Leaflet y Fetch API
+    │   how-it-works.html
+    │   how-style.css
+    │   index.html --------- # El Monitor (Main View)
+    │   style.css
+    │   
+    └───img
+            favicon.ico
+            favicon.png
+            float.png
+            git.png
+            how-it-works.png
+           
+```
 
 ## 🧩 Flujo del Sistema
 1. **Extracción**: n8n consulta cada 30 segundos la API de **Abuse.ch** obteniendo IPs de servidores C&C.
@@ -32,7 +47,7 @@ Este proyecto es un panel de visualización en tiempo real de amenazas cibernét
 3. **Almacenamiento**: El backend en **Railway** guarda los datos en SQLite y mantiene un historial de 500 registros.
 4. **Visualización**: El frontend en **Vercel** consulta la API cada 10 segundos para actualizar las trayectorias.
 
-## 🧠 Habilidades Técnicas Demostradas
+## 🧠 Habilidades Técnicas Usadas
 - **Desarrollo Fullstack**: Integración de servicios desacoplados (Frontend-Backend-DB).
 - **Manipulación de Datos**: Creación de pipelines ETL automatizados.
 - **UI/UX**: Diseño de interfaces "Low-latency" con estética avanzada mediante CSS puro.
@@ -43,6 +58,6 @@ Este proyecto está bajo la Licencia **MIT**. Podés usarlo, modificarlo y distr
 
 ## 🌐 Screenshots
 
-![Live Map](screenshot/livemap.png)
+![Live Map](screenshots/livemap.png)
 
-![How it works](screenshot/how-it-works.png)
+![How it works](screenshots/how-it-works.png)
