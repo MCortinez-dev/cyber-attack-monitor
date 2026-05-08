@@ -34,18 +34,21 @@
 
         const script = [
             { type: 'cmd', text: 'sudo apt update && sudo apt install docker.io docker-compose -y' },
-            { type: 'out', text: 'Instalando dependencias de infraestructura... Done.' },
-            { type: 'cmd', text: 'mkdir cyber-map && cd cyber-map' },
+            { type: 'out', text: 'Leyendo lista de paquetes... Hecho. Instalando Docker Engine...' },
+            
+            { type: 'cmd', text: 'mkdir ~/cyber-map && cd ~/cyber-map' },
+            { type: 'out', text: 'Entorno de trabajo preparado en /home/servidor/cyber-map' },
+
             { type: 'cmd', text: 'mkdir n8n_data && chmod 777 n8n_data' },
-            { type: 'out', text: 'Preparando volúmenes persistentes para base de datos SQLite...' },
-            { type: 'cmd', text: 'cat <<EOF > docker-compose.yml\nversion: "3"\nservices:\n  n8n:\n    image: n8nio/n8n\n    volumes: ["./n8n_data:/home/node/.n8n"]\n  api:\n    build: ./attack-api\nEOF' },
-            { type: 'cmd', text: 'docker-compose up -d' },
-            { type: 'out', text: 'Creating network "cyber-map_default"...\nCreating cyber-map-n8n-1 ... done\nCreating cyber-map-api-1 ... done' },
-            { type: 'cmd', text: 'ls -R' },
-            { type: 'out', text: '.:\nattack-api  backend  docker-compose.yml  n8n_data\n\n./attack-api:\nDockerfile  package.json  server.js' },
+            { type: 'out', text: 'Creando volumen de persistencia para SQLite y nodos personalizados...' },
+
+            { type: 'cmd', text: 'docker run -d --name cyber-map-n8n-1 -p 5678:5678 -v $(pwd)/n8n_data:/home/node/.n8n n8nio/n8n' },
+            { type: 'out', text: 'Unable to find image n8nio/n8n:latest locally\nlatest: Pulling from n8nio/n8n\nDigest: sha256:e3b0c... \nStatus: Downloaded newer image. Container 85ced85b530a started.' },
+
             { type: 'cmd', text: 'docker ps' },
-            { type: 'out', text: 'CONTAINER ID   IMAGE       STATUS          PORTS\n85ced85b530a   n8nio/n8n   Up 1 hour       0.0.0.0:5678->5678/tcp\n5f4d1f6de35b   cyber-api   Up 34 hours     0.0.0.0:3000->3000/tcp' },
-            { type: 'cmd', text: 'echo "Servidor Alfa operativo. Sincronizando con Railway..."' }
+            { type: 'out', text: 'CONTAINER ID   IMAGE       STATUS          PORTS\n85ced85b530a   n8nio/n8n   Up 1 minute     0.0.0.0:5678->5678/tcp' },
+
+            { type: 'cmd', text: 'echo "n8n listo. Accediendo a http://localhost:5678 para configurar el webhook a Railway..."' }
         ];
 
         let i = 0;
