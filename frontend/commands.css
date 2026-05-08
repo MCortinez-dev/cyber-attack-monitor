@@ -11,8 +11,8 @@ body {
 }
 
 .terminal-window {
-    width: 85%; /* Más ancha */
-    height: 80vh; /* Más alta */
+    width: 90%;
+    height: 90vh;
     background: #0d0d0d;
     border: 1px solid #333;
     border-radius: 8px;
@@ -23,9 +23,9 @@ body {
 
 #terminal-body {
     padding: 25px;
-    flex-grow: 1; /* El cuerpo ocupa el espacio restante */
+    flex-grow: 1;
     overflow-y: auto;
-    font-size: 15px; /* Texto un poco más grande */
+    font-size: 15px;
     line-height: 1.6;
 }
 
@@ -49,8 +49,8 @@ body {
 /* Botón Volver */
 .back-btn {
     position: absolute;
-    top: 20px;
-    left: 20px;
+    bottom: 20px;
+    right: 20px;
     color: #00ff00;
     text-decoration: none;
     border: 1px solid #00ff00;
