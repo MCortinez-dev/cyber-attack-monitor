@@ -66,6 +66,7 @@ body {
     margin-top: 20px;
     border-top: 1px dashed #333;
     padding-top: 20px;
+    padding-bottom: 10px;
 }
 .social-link {
     color: #00ff00;
