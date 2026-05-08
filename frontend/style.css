@@ -59,7 +59,7 @@ body { margin: 0; padding: 0; overflow: hidden; background-color: #05070a; }
 
 /* Posiciones específicas */
 .left-pos { left: 30px; }
-.right-pos { right: 30px; }
+.right-pos { right: 60px; }
 
 .console-icon {
     color: #00ff00;
