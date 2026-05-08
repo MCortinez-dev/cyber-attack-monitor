@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>Terminal - Proceso de Despliegue</title>
+    <link rel="icon" type="image/x-icon" href="img/favicon.ico">
+    <link rel="stylesheet" href="commands.css">
+</head>
+<body>
+
+    <a href="index.html" class="back-btn">← VOLVER AL MAPA</a>
+
+    <div class="terminal-window">
+        <div class="terminal-header">
+            <div class="dots">
+                <span class="dot red"></span>
+                <span class="dot yellow"></span>
+                <span class="dot green"></span>
+            </div>
+            <span>bash — mcortinez@servidor-Alfa</span>
+        </div>
+        <div id="terminal-body"></div>
+        
+        <div id="final-links">
+            <p>¡Despliegue finalizado con éxito! Gracias por revisar mi arquitectura.</p>
+            <a href="https://github.com/MCortinez-dev" target="_blank" class="social-link">[ GITHUB ]</a>
+            <a href="https://www.linkedin.com/in/matias-roberto-cortinez-454143241/" target="_blank" class="social-link">[ LINKEDIN ]</a>
+        </div>
+    </div>
+
+    <script>
+        const terminal = document.getElementById('terminal-body');
+        const finalLinks = document.getElementById('final-links');
+
+        const script = [
+            { type: 'cmd', text: 'mkdir cyber-map && cd cyber-map' },
+            { type: 'out', text: 'Directorio de proyecto creado en servidor-Alfa...' },
+            { type: 'cmd', text: 'ls -R' },
+            { type: 'out', text: './attack-api  ./backend  docker-compose.yml  ./n8n_data' },
+            { type: 'cmd', text: 'docker run -d --name cyber-map-n8n-1 -p 5678:5678 -v $(pwd)/n8n_data:/home/node/.n8n n8nio/n8n' },
+            { type: 'out', text: 'Status: Downloaded newer image for n8nio/n8n:latest\nContainer 85ced85b530a started. Puerto: 5678 activo.' },
+            { type: 'cmd', text: 'curl -X POST https://cyber-attack-api-production.up.railway.app/status -d "origin=n8n_local"' },
+            { type: 'out', text: '{"status": "connected", "message": "Conexión local a Railway establecida"}' },
+            { type: 'cmd', text: 'echo "Arquitectura lista para monitoreo en tiempo real."' }
+        ];
+
+        let i = 0;
+
+        async function typeText(text, element, speed = 40) {
+            for (let char of text) {
+                element.innerHTML += char;
+                await new Promise(r => setTimeout(r, speed));
+            }
+            element.innerHTML += '<br>';
+        }
+
+        async function runTerminal() {
+            for (let step of script) {
+                const line = document.createElement('div');
+                terminal.appendChild(line);
+
+                if (step.type === 'cmd') {
+                    line.innerHTML = `<span class="user">mcortinez@servidor-Alfa</span>:<span class="path">~/cyber-map</span>$ `;
+                    await typeText(step.text, line, 50);
+                } else {
+                    line.className = 'output';
+                    await typeText(step.text, line, 10);
+                }
+                terminal.scrollTop = terminal.scrollHeight;
+                await new Promise(r => setTimeout(r, 800));
+            }
+            finalLinks.style.display = 'block';
+        }
+
+        runTerminal();
+    </script>
+</body>
+</html>
