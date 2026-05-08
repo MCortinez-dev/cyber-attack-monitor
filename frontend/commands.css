@@ -49,12 +49,11 @@ body {
 
 /* Botón Volver */
 .back-btn {
-    /* Quitamos el posicionamiento absoluto para que fluya bajo la terminal */
     display: inline-block; 
     color: #00ff00;
     text-decoration: none;
     border: 1px solid #00ff00;
-    padding: 10px 25px; /* Un poco más grande para que destaque */
+    padding: 10px 25px; 
     font-weight: bold;
     transition: all 0.3s;
     background: transparent;
