@@ -33,15 +33,19 @@
         const finalLinks = document.getElementById('final-links');
 
         const script = [
+            { type: 'cmd', text: 'sudo apt update && sudo apt install docker.io docker-compose -y' },
+            { type: 'out', text: 'Instalando dependencias de infraestructura... Done.' },
             { type: 'cmd', text: 'mkdir cyber-map && cd cyber-map' },
-            { type: 'out', text: 'Directorio de proyecto creado en servidor-Alfa...' },
+            { type: 'cmd', text: 'mkdir n8n_data && chmod 777 n8n_data' },
+            { type: 'out', text: 'Preparando volúmenes persistentes para base de datos SQLite...' },
+            { type: 'cmd', text: 'cat <<EOF > docker-compose.yml\nversion: "3"\nservices:\n  n8n:\n    image: n8nio/n8n\n    volumes: ["./n8n_data:/home/node/.n8n"]\n  api:\n    build: ./attack-api\nEOF' },
+            { type: 'cmd', text: 'docker-compose up -d' },
+            { type: 'out', text: 'Creating network "cyber-map_default"...\nCreating cyber-map-n8n-1 ... done\nCreating cyber-map-api-1 ... done' },
             { type: 'cmd', text: 'ls -R' },
-            { type: 'out', text: './attack-api  ./backend  docker-compose.yml  ./n8n_data' },
-            { type: 'cmd', text: 'docker run -d --name cyber-map-n8n-1 -p 5678:5678 -v $(pwd)/n8n_data:/home/node/.n8n n8nio/n8n' },
-            { type: 'out', text: 'Status: Downloaded newer image for n8nio/n8n:latest\nContainer 85ced85b530a started. Puerto: 5678 activo.' },
-            { type: 'cmd', text: 'curl -X POST https://cyber-attack-api-production.up.railway.app/status -d "origin=n8n_local"' },
-            { type: 'out', text: '{"status": "connected", "message": "Conexión local a Railway establecida"}' },
-            { type: 'cmd', text: 'echo "Arquitectura lista para monitoreo en tiempo real."' }
+            { type: 'out', text: '.:\nattack-api  backend  docker-compose.yml  n8n_data\n\n./attack-api:\nDockerfile  package.json  server.js' },
+            { type: 'cmd', text: 'docker ps' },
+            { type: 'out', text: 'CONTAINER ID   IMAGE       STATUS          PORTS\n85ced85b530a   n8nio/n8n   Up 1 hour       0.0.0.0:5678->5678/tcp\n5f4d1f6de35b   cyber-api   Up 34 hours     0.0.0.0:3000->3000/tcp' },
+            { type: 'cmd', text: 'echo "Servidor Alfa operativo. Sincronizando con Railway..."' }
         ];
 
         let i = 0;
