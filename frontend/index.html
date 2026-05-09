@@ -16,34 +16,41 @@
     <link rel="stylesheet" href="https://unpkg.com/leaflet/dist/leaflet.css" media="print" onload="this.media='all'">
 </head>
 <body>
+    <main>
+        <section class="ui-overlay">
+            <header>
+                <h1>GLOBAL THREAT MONITOR</h1>
+            </header>
+            
+            <div id="stats" aria-live="polite">
+                Ataques detectados: <span id="count">0</span>
+            </div>
+            
+            <article class="panel-section">
+                <div class="label">ULTIMA AMENAZA:</div>
+                <div id="last-attack">Esperando datos...</div>
+            </article>
 
-    <div class="ui-overlay">
-        <h1>GLOBAL THREAT MONITOR</h1>
-        <div id="stats">
-            Ataques detectados: <span id="count">0</span>
-        </div>
-        
-        <div class="panel-section">
-            <div class="label">ULTIMA AMENAZA:</div>
-            <div id="last-attack">Esperando datos...</div>
-        </div>
+            <article class="panel-section">
+                <div class="label">HISTORIAL RECIENTE:</div>
+                <div id="attack-log"></div> 
+            </article>
+        </section>
 
-        <div class="panel-section">
-            <div class="label">HISTORIAL RECIENTE:</div>
-            <div id="attack-log"></div> </div>
-    </div>
+        <section id="map" aria-label="Mapa de ataques en tiempo real"></section>
+    </main>
 
-    <div id="map"></div>
+    <nav aria-label="Navegación secundaria">
+        <a href="how-it-works.html" class="terminal-floating-btn right-pos" title="Ver Arquitectura" aria-label="Ver Arquitectura del sistema">
+            <span class="console-icon">?</span>
+        </a>
 
-    <a href="how-it-works.html" class="terminal-floating-btn right-pos" title="Ver Arquitectura" aria-label="Ver Arquitectura del sistema">
-        <span class="console-icon">?</span>
-    </a>
+        <a href="commands.html" class="terminal-floating-btn left-pos" title="Ver comandos de instalación" aria-label="Ver Comandos de instalación">
+            <span class="console-icon">>_</span>
+        </a>
+    </nav>
 
-    <a href="commands.html" class="terminal-floating-btn left-pos" title="Ver comandos de instalación" aria-label="Ver Comandos usados para crear n8n en servidos local">
-        <span class="console-icon">>_</span>
-    </a>
-
-    <script src="https://unpkg.com/leaflet/dist/leaflet.js" defer></script> <!--defer = para arreglar el SEO-->
+    <script src="https://unpkg.com/leaflet/dist/leaflet.js" defer fetchpriority="high"></script>
     <script src="app.js" defer></script>
 </body>
 </html>
