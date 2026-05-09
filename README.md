@@ -31,11 +31,12 @@ Este proyecto es un panel de visualización en tiempo real de amenazas cibernét
     │   how-style.css
     │   index.html --------- # El Monitor (Main View)
     │   style.css
+    |   commands.html
+    |   commands.css
     │   
     └───img
             favicon.ico
             favicon.png
-            float.png
             git.png
             how-it-works.png
            
@@ -61,3 +62,5 @@ Este proyecto está bajo la Licencia **MIT**. Podés usarlo, modificarlo y distr
 ![Live Map](screenshots/livemap.png)
 
 ![How it works](screenshots/how-it-works.png)
+
+![Commands](screenshots/commands.png)
