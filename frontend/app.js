@@ -87,7 +87,7 @@ function drawAttack(a) {
 
 async function fetchAttacks() {
   try {
-    const res = await fetch("https://claims-president-listprice-genetic.trycloudflare.com");
+    const res = await fetch("https://api-cyber.klventas.com.ar/attacks");
     const attacks = await res.json();
     attacks.reverse().forEach(a => {
       if (a.id > lastId) {
