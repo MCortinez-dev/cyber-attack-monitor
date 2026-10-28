@@ -8,166 +8,271 @@ body {
     background-color: #05070a;
     color: #00ff00;
     font-family: 'Courier New', monospace;
-    display: flex;
-    flex-direction: column;
-    align-items: flex-start; /* Alinea al borde izquierdo */
-    justify-content: flex-start; /* Empieza desde arriba */
     min-height: 100vh;
     width: 100vw;
-    overflow-x: hidden; /* Prohibido el scroll horizontal */
+    overflow-x: hidden;
+    padding: 20px;
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
 }
 
+/* --- Botón flotante para regresar al mapa --- */
+.back-to-map-btn {
+    position: fixed;
+    top: 20px;
+    left: 20px;
+    z-index: 100;
+    background: #000;
+    border: 2px solid #00ff00;
+    color: #00ff00;
+    padding: 8px 16px;
+    border-radius: 20px;
+    text-decoration: none;
+    font-weight: bold;
+    font-size: 0.85rem;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    box-shadow: 0 0 10px rgba(0, 255, 0, 0.4);
+    transition: all 0.3s ease;
+}
+
+.back-to-map-btn:hover {
+    background: #00ff00;
+    color: #000;
+    box-shadow: 0 0 20px rgba(0, 255, 0, 0.8);
+    transform: scale(1.05);
+}
+
+/* --- Contenedor Principal --- */
 .architecture-wrapper {
-    width: 100vw; 
-    max-width: none;
-    padding: 0;
-    margin: 0;
-}
-
-.relative-container {
-    position: relative;
-    width: 100vw;
-    line-height: 0;
-}
-
-.main-img {
-    width: 100vw;
-    height: auto;
-    display: block;
-    border: none;
-    border-bottom: 2px solid #ff00c8;
-}
-
-
-.bubble-btn img {
-    width: 80%;
-    height: 80%; 
-    object-fit: cover; 
-    border-radius: 50%; 
-}
-
-/* Re-calibración de posiciones para pantalla completa */
-.git-pos { bottom: 15%; left: 25%; } 
-.map-pos { top: 5%; right: 13%; }
-
-.header-overlay {
-    position: absolute;
-    top: 4%; 
-    left: 50%;
-    transform: translateX(-50%);
-    width: 40%;
-    text-align: center;
-    line-height: normal;
-}
-
-.header-overlay h2 {
-    font-size: 1.5vw;
-    margin: 0;
-    text-shadow: 0 0 10px #00ff00;
-}
-
-.element-wrapper {
-    position: absolute;
+    width: 100%;
+    max-width: 1200px;
+    margin: 40px auto 20px auto;
     display: flex;
     flex-direction: column;
     align-items: center;
-    line-height: normal;
+    gap: 30px;
 }
 
-.bubble-btn {
-    width: 5.5vw; 
-    height: 5.5vw;
-    min-width: 55px;
-    min-height: 55px;
-    max-width: 85px;
-    max-height: 85px;
-    background: #000;
-    border: 2px solid #00ff00;
-    border-radius: 50%;
+.main-header {
+    text-align: center;
+    margin-bottom: 10px;
+}
+
+.main-header h1 {
+    font-size: 1.8rem;
+    letter-spacing: 2px;
+    text-shadow: 0 0 12px #00ff00;
+    border-bottom: 2px solid #00ff00;
+    display: inline-block;
+    padding-bottom: 8px;
+}
+
+.main-header .subtitle {
+    color: #888;
+    font-size: 0.85rem;
+    margin-top: 10px;
+}
+
+/* --- Rejilla del Diagrama de Arquitectura --- */
+.architecture-grid {
     display: flex;
-    justify-content: center;
+    flex-direction: row;
     align-items: center;
-    box-shadow: 0 0 15px rgba(0, 255, 0, 0.5);
-    transition: transform 0.3s;
-    overflow: hidden; /* Corta cualquier excedente de la imagen */
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 15px;
+    width: 100%;
 }
 
-.bubble-btn:hover { transform: scale(1.1); }
-
-.label {
-    position: absolute;
-    bottom: -25px;
-    font-size: 0.8vw;
-    min-width: 10px;
-    white-space: nowrap;
-    background: rgba(184, 255, 137, 0.562);
-    padding: 2px 5px;
+.arch-card {
+    background: rgba(10, 15, 20, 0.95);
     border: 1px solid #00ff00;
+    border-radius: 8px;
+    padding: 20px;
+    width: 240px;
+    min-height: 220px;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    position: relative;
+    box-shadow: 0 0 15px rgba(0, 255, 0, 0.15);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
 }
 
-/* --- FLECHA GIT (Horizontal hacia la derecha) --- */
-.arrow-to-git {
-    width: 60px;                 /* Largo de la flecha */
-    height: 3px;                 /* Grosor de la línea */
-    background: #00ff00;
-    position: absolute;
-    top: 50%;                    /* Centrada al medio del botón */
-    left: 100%;                  /* Sale desde el borde derecho */
-    margin-left: 10px;           /* Separación del botón */
-    transform: translateY(-50%);
-    box-shadow: 0 0 10px #00ff00;
-    z-index: 5;
-    animation: pulseHorizontal 1.5s infinite ease-in-out; /* Animación específica */
+.arch-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 0 25px rgba(0, 255, 0, 0.4);
 }
 
-.arrow-to-git::after {
-    content: '▶';                /* Punta hacia la derecha */
+.card-badge {
     position: absolute;
-    right: -5px;
-    top: 50%;
-    transform: translateY(-50%);
+    top: -12px;
+    left: 15px;
+    background: #000;
+    border: 1px solid #00ff00;
     color: #00ff00;
-    font-size: 14px;
+    font-size: 0.65rem;
+    font-weight: bold;
+    padding: 2px 8px;
+    border-radius: 4px;
 }
 
-.arrow-from-vercel {
-    width: 3px;
-    height: 60px;                /* Largo para que llegue a tocar la caja de la imagen */
-    background: #00ff00;
-    position: absolute;
-    top: 110%;                   /* Se posiciona DEBAJO del botón */
-    left: 50%;
-    transform: translateX(-50%);
-    box-shadow: 0 0 10px #00ff00;
-    z-index: 5;
-    animation: pulseVerticalInverse 1.5s infinite ease-in-out;
+.arch-card h2 {
+    font-size: 1rem;
+    margin: 10px 0 12px 0;
+    color: #fff;
+    border-bottom: 1px dashed rgba(0, 255, 0, 0.3);
+    padding-bottom: 6px;
 }
 
-/* La punta de la flecha arriba (señalando al botón) */
-.arrow-from-vercel::before {
-    content: '▲';
+.arch-card p, .arch-card ul {
+    font-size: 0.75rem;
+    color: #ccc;
+    line-height: 1.4;
+}
+
+.arch-card ul {
+    list-style: none;
+    padding-left: 0;
+}
+
+.arch-card ul li {
+    margin-bottom: 6px;
+    position: relative;
+    padding-left: 12px;
+}
+
+.arch-card ul li::before {
+    content: "➢";
     position: absolute;
-    top: -10px;                  /* En la parte superior de la línea verde */
-    left: 50%;
-    transform: translateX(-50%);
+    left: 0;
     color: #00ff00;
-    font-size: 14px;
+}
+
+.code-box {
+    background: #000;
+    border: 1px solid rgba(0, 255, 0, 0.3);
+    padding: 6px;
+    border-radius: 4px;
+    font-size: 0.65rem;
+    word-break: break-all;
+    margin-bottom: 10px;
+    color: #00ff00;
+}
+
+/* --- Flechas animadas de conexión --- */
+.flow-arrow {
+    color: #00ff00;
+    font-size: 1.2rem;
     text-shadow: 0 0 8px #00ff00;
+    animation: pulseArrow 1.5s infinite ease-in-out;
 }
 
-/* --- ANIMACIONES (Nombres distintos para que no choquen) --- */
-@keyframes pulseHorizontal {
-    0%, 100% { opacity: 0.4; transform: translateY(-50%) translateX(0); }
-    50% { opacity: 1; transform: translateY(-50%) translateX(10px); }
+@keyframes pulseArrow {
+    0%, 100% { opacity: 0.3; transform: translateX(0); }
+    50% { opacity: 1; transform: translateX(5px); }
 }
 
-@keyframes pulseVerticalInverse {
-    0%, 100% { 
-        opacity: 0.4; 
-        transform: translateX(-50%) translateY(0); 
+/* --- Sección del Desarrollador y GitHub --- */
+.author-section {
+    margin-top: 30px;
+    display: flex;
+    align-items: center;
+    gap: 20px;
+    background: rgba(10, 15, 20, 0.9);
+    border: 1px solid #00ff00;
+    padding: 15px 30px;
+    border-radius: 50px;
+    box-shadow: 0 0 20px rgba(0, 255, 0, 0.2);
+}
+
+.profile-container {
+    position: relative;
+}
+
+.profile-link {
+    display: block;
+    position: relative;
+    width: 70px;
+    height: 70px;
+    border-radius: 50%;
+    border: 2px solid #00ff00;
+    overflow: hidden;
+    box-shadow: 0 0 15px rgba(0, 255, 0, 0.5);
+    transition: transform 0.3s ease;
+}
+
+.profile-link:hover {
+    transform: scale(1.1);
+}
+
+/* Carga dinámica del avatar directamente de tu perfil de GitHub */
+.github-avatar {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.github-badge {
+    position: absolute;
+    bottom: -18px;
+    left: 50%;
+    transform: translateX(-50%);
+    background: #000;
+    border: 1px solid #00ff00;
+    color: #00ff00;
+    font-size: 0.55rem;
+    font-weight: bold;
+    padding: 1px 4px;
+    white-space: nowrap;
+    border-radius: 3px;
+}
+
+.author-info h3 {
+    font-size: 1rem;
+    color: #fff;
+}
+
+.author-info h3 span {
+    color: #00ff00;
+}
+
+.author-info p {
+    font-size: 0.75rem;
+    color: #888;
+    margin-top: 4px;
+}
+
+/* ==========================================================================
+   ADAPTACIÓN RESPONSIVE (MÓVILES Y TABLETS)
+   ========================================================================== */
+@media screen and (max-width: 900px) {
+    .architecture-grid {
+        flex-direction: column;
     }
-    50% { 
-        opacity: 1; 
-        transform: translateX(-50%) translateY(-10px); /* El salto es hacia el botón */
+
+    .flow-arrow {
+        transform: rotate(90deg);
+        animation: pulseArrowVertical 1.5s infinite ease-in-out;
+    }
+
+    @keyframes pulseArrowVertical {
+        0%, 100% { opacity: 0.3; transform: rotate(90deg) translateY(0); }
+        50% { opacity: 1; transform: rotate(90deg) translateY(5px); }
+    }
+
+    .arch-card {
+        width: 100%;
+        max-width: 350px;
+    }
+
+    .author-section {
+        flex-direction: column;
+        text-align: center;
+        border-radius: 15px;
+        padding: 20px;
     }
 }

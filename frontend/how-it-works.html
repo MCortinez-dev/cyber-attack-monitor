@@ -9,30 +9,84 @@
 </head>
 <body>
 
+    <!-- Botón flotante para regresar al mapa principal -->
+    <a href="index.html" class="back-to-map-btn" title="Volver al Mapa">
+        <span class="icon">◀</span>
+        <span class="btn-text">LIVE MAP</span>
+    </a>
+
     <main class="architecture-wrapper">
-        <div class="relative-container">
-            <img src="img/how-it-works.png" alt="Architecture Diagram" class="main-img">
+        <header class="main-header">
+            <h1>SYSTEM ARCHITECTURE FLOW</h1>
+            <p class="subtitle">Flujo de datos automatizado, procesamiento de amenazas e infraestructura en vivo</p>
+        </header>
 
-            <header class="header-overlay">
-                <h2>SYSTEM ARCHITECTURE FLOW</h2>
-            </header>
+        <!-- Diagrama interactivo estructurado en Grid/Flexbox nativo -->
+        <section class="architecture-grid">
 
-            <div class="element-wrapper git-pos">
-                <div class="arrow-animated arrow-to-git"></div>
-                <a href="https://github.com/MCortinez-dev" target="_blank" class="bubble-btn">
-                    <img src="img/git.png" alt="GitHub">
-                    <span class="label">GITHUB REPO</span>
+            <!-- Bloque 1: Fuente de Datos Externa -->
+            <article class="arch-card source-card">
+                <div class="card-badge">FUENTES EXTERNAS</div>
+                <h2>1. Extracción de Datos</h2>
+                <div class="code-box">
+                    <code>GET https://feodotracker.abuse.ch/downloads/ipblocklist.json</code>
+                </div>
+                <p>Captura de botnets, malwares e IPs maliciosas globales en tiempo real.</p>
+            </article>
+
+            <!-- Conector de flujo -->
+            <div class="flow-arrow"><span>▶</span></div>
+
+            <!-- Bloque 2: Motor de Datos n8n (Local) -->
+            <article class="arch-card n8n-card">
+                <div class="card-badge">ORQUESTADOR</div>
+                <h2>2. Motor n8n (Docker Local)</h2>
+                <ul>
+                    <li>Trigger programado (Cada 30 seg).</li>
+                    <li>Normalización de país, IP y tipo de malware.</li>
+                    <li>Inyección de datos vía HTTP POST al backend.</li>
+                </ul>
+            </article>
+
+            <!-- Conector de flujo -->
+            <div class="flow-arrow"><span>▶</span></div>
+
+            <!-- Bloque 3: Backend Local + Cloudflare Tunnel -->
+            <article class="arch-card backend-card">
+                <div class="card-badge">SERVIDOR LOCAL</div>
+                <h2>3. Backend & Cloudflare Tunnel</h2>
+                <div class="code-box">
+                    <code>POST https://api-cyber.klventas.com.ar/attacks</code>
+                </div>
+                <p>Servicio Node.js / Express en contenedor Docker. Expuesto de forma segura a internet mediante <strong>Cloudflare Tunnel (systemd)</strong> sin abrir puertos en el router.</p>
+            </article>
+
+            <!-- Conector de flujo -->
+            <div class="flow-arrow"><span>▶</span></div>
+
+            <!-- Bloque 4: Frontend Vercel -->
+            <article class="arch-card vercel-card">
+                <div class="card-badge">FRONTEND HOSTING</div>
+                <h2>4. Visualizador Vercel</h2>
+                <p>Interfaz dinámica en Leaflet.js que consulta la API expuesta por el túnel y grafica los ataques globales instantáneamente.</p>
+            </article>
+
+        </section>
+
+        <!-- Sección de Créditos / Enlaces de Perfil y Repositorio -->
+        <footer class="author-section">
+            <div class="profile-container">
+                <!-- Foto de perfil dinámica directo desde GitHub -->
+                <a href="https://github.com/MCortinez-dev" target="_blank" rel="noopener noreferrer" class="profile-link">
+                    <img src="https://github.com/MCortinez-dev.png" alt="Matías Cortinez - GitHub Profile" class="github-avatar">
+                    <span class="github-badge">GITHUB REPO</span>
                 </a>
             </div>
-
-            <div class="element-wrapper map-pos">
-                <div class="arrow-animated arrow-from-vercel"></div>
-                <a href="index.html" class="bubble-btn">
-                    <img src="img/favicon.ico" alt="Map">
-                    <span class="label">LIVE MAP</span>
-                </a>
+            <div class="author-info">
+                <h3>Desarrollado por <span>Matías Cortinez</span></h3>
+                <p>Desarrollo Full Stack e Infraestructura Linux | Monorepo público en GitHub</p>
             </div>
-        </div>
+        </footer>
     </main>
 
 </body>
