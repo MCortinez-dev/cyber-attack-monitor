@@ -20,13 +20,11 @@ Este proyecto es un panel de visualización en tiempo real de amenazas cibernét
 │   LICENSE
 │   README.md
 │
-
 ├───backend ---------------- # Servidor Express y lógica de Base de Datos
 │       Dockerfile --------- # Configuración de contenedorización local
 │       package.json
 │       server.js
 │
-
 ├───frontend
 │   app.js ------------- # Implementación de Leaflet y Fetch API
 │   how-it-works.html
