@@ -1,0 +1,24 @@
+version: '3.8'
+
+services:
+  backend:
+    build: ./backend
+    container_name: cyber-attack
+    ports:
+      - "3000:3000"
+    restart: always
+    volumes:
+      - backend_data:/app
+
+  n8n:
+    image: n8nio/n8n:latest
+    container_name: cyber-n8n
+    ports:
+      - "5678:5678"
+    restart: always
+    volumes:
+      - n8n_data:/home/node/.n8n
+
+volumes:
+  n8n_data:
+  backend_data:
